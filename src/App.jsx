@@ -22,6 +22,7 @@ function App() {
           <Route path="/login" element={<LoginPage/>} />
           <Route path="/dashboard" element={<Dashboard/>} />
           <Route path="/user/:username" element={<User/>} />
+          <Route path="/user/:username" element={<User/>} />
         </Routes>
       </div>
     </>
