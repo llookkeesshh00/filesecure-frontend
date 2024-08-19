@@ -15,14 +15,14 @@ function App() {
     <>
       <div>
         {/* Conditionally render Navbar based on the current path */}
-        {location.pathname === '/' && <Navbar />}
+        <Navbar />
         <Routes>
           <Route path="/" element={<HomePage/>} />
           <Route path="/signup" element={<SignUpPage/>} />
           <Route path="/login" element={<LoginPage/>} />
           <Route path="/dashboard" element={<Dashboard/>} />
-          <Route path="/user/:username" element={<User/>} />
-          <Route path="/user/:username" element={<User/>} />
+          <Route path="/user/:useremail/:username" element={<User/>} />
+         
         </Routes>
       </div>
     </>
