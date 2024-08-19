@@ -6,6 +6,7 @@ const User = () => {
     return (
     <div>
       {params.username}
+      
     </div>
   )
 }
