@@ -35,7 +35,6 @@ const LoginPage = () => {
     }
     else {
       localStorage.setItem('userEmail', email);
-
       // Fetch user details after login
       let userRes = await fetch(`http://localhost:3000/auth/getdata`, {
         method: 'POST',
