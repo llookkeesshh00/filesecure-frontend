@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext.jsx';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -46,6 +47,9 @@ const LoginPage = () => {
       // Redirect to the user's specific page and using context method common methods to all apps
       login(email, userRes.name);
       navigate(`/user/${userRes.email}/${userRes.name}`);
+
+
+      
     }
     setEmail("");
     setPassword("");

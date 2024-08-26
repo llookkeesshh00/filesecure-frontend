@@ -1,10 +1,11 @@
 import React from 'react'
 
-const Dashboard = () => {
+const Identity = () => {
   return (
     <div>
+      
     </div>
   )
 }
 
-export default Dashboard
+export default Identity

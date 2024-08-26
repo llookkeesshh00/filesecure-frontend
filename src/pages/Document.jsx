@@ -1,10 +1,11 @@
 import React from 'react'
 
-const Dashboard = () => {
+const Document = () => {
   return (
     <div>
+      gjgk
     </div>
   )
 }
 
-export default Dashboard
+export default Document

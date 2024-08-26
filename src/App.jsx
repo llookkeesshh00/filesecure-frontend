@@ -5,6 +5,10 @@ import SignUpPage from './pages/SignUpPage';
 import Dashboard from './pages/Dashboard';
 import LoginPage from './pages/LoginPage';
 import User from './pages/User'
+import Identity from'./pages/Identity';
+import Password from'./pages/Password';
+import Document from'./pages/Document';
+
 import './App.css'
 import Navbar from './components/Navbar'
 
@@ -22,6 +26,9 @@ function App() {
           <Route path="/login" element={<LoginPage/>} />
           <Route path="/dashboard" element={<Dashboard/>} />
           <Route path="/user/:useremail/:username" element={<User/>} />
+          <Route path="/user/:useremail/:username/password" element={<Password/>} />
+          <Route path="/user/:useremail/:username/document" element={<Document/>} />
+          <Route path="/user/:useremail/:username/identity" element={<Identity/>} />
          
         </Routes>
       </div>
