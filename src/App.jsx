@@ -18,19 +18,19 @@ function App() {
   return (
     <>
       <div>
-        {/* Conditionally render Navbar based on the current path */}
-        <Navbar />
+       <Navbar/>
+      <div className="pt-16"> {/* Padding to prevent content overlap */}
         <Routes>
-          <Route path="/" element={<HomePage/>} />
-          <Route path="/signup" element={<SignUpPage/>} />
-          <Route path="/login" element={<LoginPage/>} />
-          <Route path="/dashboard" element={<Dashboard/>} />
-          <Route path="/user/:useremail/:username" element={<User/>} />
-          <Route path="/user/:useremail/:username/password" element={<Password/>} />
-          <Route path="/user/:useremail/:username/document" element={<Document/>} />
-          <Route path="/user/:useremail/:username/identity" element={<Identity/>} />
-         
+          <Route path="/" element={<HomePage />} />
+          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/user/:useremail/:username" element={<User />} />
+          <Route path="/user/:useremail/:username/password" element={<Password />} />
+          <Route path="/user/:useremail/:username/document" element={<Document />} />
+          <Route path="/user/:useremail/:username/identity" element={<Identity />} />
         </Routes>
+      </div>
       </div>
     </>
   )

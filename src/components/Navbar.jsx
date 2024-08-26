@@ -14,7 +14,8 @@ const Navbar = () => {
    };
 
    return (
-      <nav className="navbar flex justify-between p-2 bg-blue-800 text-white rounded-e-lg">
+      <nav className="navbar flex justify-between  fixed top-0 left-0 w-full p- z-50 bg-blue-800 text-white">
+           <nav className="fixed top-0 left-0 w-full bg-blue-900 text-white shadow-md z-50"></nav>
          <div className="logo p-2 flex justify-center items-center gap-3">
             <img src="/asssets/logo.jpg" alt="FileSecure Logo" className="h-8" />
             <span className='font-bold'>FileSecure</span>
