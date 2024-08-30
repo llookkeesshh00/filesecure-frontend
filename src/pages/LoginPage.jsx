@@ -23,6 +23,7 @@ const LoginPage = () => {
       body: JSON.stringify(login_obj),
     });
     res = await res.json();
+    console.log(res)
     if (!res.sucess) {
       setmessage(true)
       if (res.message === 'please enter correct password') {
@@ -35,18 +36,9 @@ const LoginPage = () => {
 
     }
     else {
-      localStorage.setItem('userEmail', email);
-      // Fetch user details after login
-      let userRes = await fetch(`http://localhost:3000/auth/getdata`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        }, body: JSON.stringify(login_obj),
-      });
-      userRes = await userRes.json();
-      // Redirect to the user's specific page and using context method common methods to all apps
-      login(email, userRes.name);
-      navigate(`/user/${userRes.email}/${userRes.name}`);
+  
+      login(email, res.name,res.role,res.token);
+      navigate(`/${res.role}/${email}/`);
 
 
       
@@ -65,9 +57,9 @@ const LoginPage = () => {
           </div>
         )}
       </div>
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-xl">
+      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-xl  transition-transform duration-300 transform hover:scale-105 hover:shadow-2xl">
 
-        <h2 className="text-2xl font-bold text-center text-blue-700">Login to FileSecure</h2>
+        <h2 className="text-2xl font-bold text-center text-green-700">Login to FileSecure</h2>
 
         <form onSubmit={handleLogin} className="space-y-6">
           <div>
@@ -79,7 +71,7 @@ const LoginPage = () => {
             <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 transition duration-300" required />
           </div>
           <div>
-            <button type="submit" className="w-full py-2 px-4 bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-transform duration-300 transform hover:scale-105">
+            <button type="submit" className="w-full py-2 px-4 bg-green-600 text-white rounded-md shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-transform duration-300 transform hover:scale-105">
               Login
             </button>
           </div>
