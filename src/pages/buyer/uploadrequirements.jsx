@@ -48,7 +48,7 @@ const BuyerRequirementsForm = () => {
         setregion('');
         setBudget('');
       } else {
-        toast.error(res.error || 'upload contract failed! Please try again.');
+        toast.error(result.error || 'upload contract failed! Please try again.');
 
       }
     } catch (error) {

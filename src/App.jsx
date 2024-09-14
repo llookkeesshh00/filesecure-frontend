@@ -14,6 +14,7 @@ import BuyerRequirements from './pages/buyer/uploadrequirements'
 import Getcontracts from './pages/farmer/Getcontracts';
 import Farmerdashboard from './pages/farmer/Farmerdashboard';
 import Buyerdashboard from './pages/buyer/Buyerdashboard';
+import Legaldashboard from './pages/legalTeam/Legaldashboard';
 function App() {
   const location = useLocation();
   
@@ -30,12 +31,13 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/aboutus" element={<Aboutus />} />
           <Route path='/farmer/:user' element={<Farmerhome/>}/>
+          <Route path='/legalTeam/:user' element={<Legaldashboard/>}/>
           <Route path='/farmer/:user/dashboard' element={<Farmerdashboard/>}/>
           <Route path='/farmer/:user/get-contracts' element={<Getcontracts/>}/>
           <Route path='/buyer/:user' element={<Buyerhome/>}/>
           <Route path='/buyer/:user/dashboard' element={<Buyerdashboard/>}/>
           <Route path='/buyer/:user/upload-requirements' element={<BuyerRequirements/>}/>
-
+          
         
         </Routes>
       </div>

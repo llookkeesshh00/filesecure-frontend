@@ -5,21 +5,11 @@ const Getcontracts = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
-    // Load contractMade state from localStorage
-    useEffect(() => {
-        const savedContracts = JSON.parse(localStorage.getItem('madeContracts')) || [];
-        setContracts((prevContracts) =>
-            prevContracts.map((contract) =>
-                savedContracts.includes(contract._id)
-                    ? { ...contract, contractMade: true }
-                    : contract
-            )
-        );
-    }, []);
-
+    // Load contractMade state from localStorage and update contracts
     useEffect(() => {
         const fetchContracts = async () => {
             try {
+                // Fetch contracts from the server
                 const response = await fetch('http://localhost:3000/farmer/contracts', {
                     method: 'GET',
                     headers: {
@@ -31,6 +21,7 @@ const Getcontracts = () => {
                 if (!response.ok) {
                     throw new Error('Failed to fetch contracts');
                 }
+
                 const data = await response.json();
 
                 // Load contractMade state from localStorage
@@ -40,6 +31,7 @@ const Getcontracts = () => {
                         ? { ...contract, contractMade: true }
                         : contract
                 );
+
                 setContracts(updatedContracts);
                 console.log(updatedContracts);
             } catch (error) {
@@ -64,12 +56,13 @@ const Getcontracts = () => {
                     farmerEmail: localStorage.getItem('userEmail'),
                     buyerEmail: contract.buyer.email,
                     cropType: contract.cropType,
-                    requirement_id: contract._id,
+                    requirement_id: contract._id
                 })
             });
 
             if (!response.ok) {
-                throw new Error('Failed to make contract');
+                const errorDetails = await response.text();
+                throw new Error(`Failed to make contract: ${errorDetails}`);
             }
 
             const result = await response.json();
@@ -85,7 +78,7 @@ const Getcontracts = () => {
             const madeContracts = JSON.parse(localStorage.getItem('madeContracts')) || [];
             localStorage.setItem('madeContracts', JSON.stringify([...madeContracts, contract._id]));
         } catch (error) {
-            console.error(error.message);
+            console.error('Error making contract:', error.message);
         }
     };
 
@@ -94,23 +87,23 @@ const Getcontracts = () => {
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r p-4">
-            <h2 className="text-2xl font-bold text-center text-green-700 mb-6">Available Contracts for you....</h2>
+            <h2 className="text-2xl font-bold text-center text-green-700 mb-6">Available Contracts for You</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {contracts.length > 0 ? (
                     contracts.map((contract) => (
-                        <div key={contract._id} className="bg-white p-2 rounded-lg shadow-md flex flex-col space-y-4">
+                        <div key={contract._id} className="bg-white p-4 rounded-lg shadow-md flex flex-col space-y-4">
                             <div className="text-center">
                                 <h3 className="text-2xl font-bold text-gray-800">{contract.cropType.toUpperCase()}</h3>
                             </div>
-                            <div className="flex gap-6">
-                                <div className="mt-2 bg-gray-200 p-2 rounded-lg shadow-md text-sm">
+                            <div className="flex flex-col md:flex-row gap-6">
+                                <div className="bg-gray-200 p-4 rounded-lg shadow-md text-sm">
                                     <p className="text-gray-900 font-semibold"><strong>Quantity:</strong> {contract.quantity} (in tonnes)</p>
                                     <p className="text-gray-900 font-semibold"><strong>Delivery Date:</strong> {new Date(contract.deliveryDate).toLocaleDateString()}</p>
                                     <p className="text-gray-900 font-semibold"><strong>Region:</strong> {contract.region}</p>
                                     <p className="text-gray-900 font-semibold"><strong>Price per Unit:</strong> ₹{contract.pricePerUnit}</p>
                                     <p className="text-gray-900 font-semibold"><strong>Description:</strong> {contract.description}</p>
                                 </div>
-                                <div className="mt-2 bg-gray-200 p-2 rounded-lg text-sm shadow-md">
+                                <div className="bg-gray-200 p-4 rounded-lg text-sm shadow-md">
                                     <h4 className="text-lg text-gray-900 font-bold">Buyer Details</h4>
                                     <p className="text-gray-900"><strong>Name:</strong> {contract.buyer.name}</p>
                                     <p className="text-gray-900"><strong>Email:</strong> {contract.buyer.email}</p>
